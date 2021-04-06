@@ -68,8 +68,13 @@ while( (allowedNumbers.length < possibilities) && (! bombList.includes(user))) {
     }
 }
 
+/**
+ * END DISPLAY
+/**/
 
-
+console.log('--- GAME OVER ---');
+console.log('List of allowed inserted numbers: ', allowedNumbers);
+console.log('Succesfull Attempts: ', allowedNumbers.length);
 
 
 
