@@ -35,9 +35,38 @@ while(bombList.length < bombsNumber) {
 }
 console.log('Bomb List:', bombList);
 
+/**
+ * 
+ *  GAME MAIN LOOP
+ * 
+/**/
 
+while( (allowedNumbers.length < possibilities) && (! bombList.includes(user))) {
 
+    // USER CHOICE
+    user = parseInt( prompt('Please enter a number between 1 and ' + maxNumber + '\n Succesfull attempts: ' + allowedNumbers.length + ' of ' + possibilities) );
 
+    // VALIDATION
+    while(isNaN(user) || user < 1 || user > maxNumber) {
+        user = parseInt( prompt('Invalid input. Please enter a valid number between 1 and ' + maxNumber));
+    }
+    console.log(user);
+
+    // CHECK FOR CHOICES
+    if(bombList.includes(user)) {
+        alert('You Lose... You were succesfull only: ' + allowedNumbers.length + ' times before finding the Bomb...');
+    } else if (allowedNumbers.includes(user)) {
+        alert('Already inserted Number, please enter another one');
+    } else if (! allowedNumbers.includes(user)) {
+        allowedNumbers.push(user);
+    }
+
+    // CHECK FOR REACHING MAX OF POSSIBILITIES
+
+    if(allowedNumbers.length === possibilities) {
+        alert('YOU WON!');
+    }
+}
 
 
 
