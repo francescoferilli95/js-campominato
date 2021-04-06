@@ -8,21 +8,46 @@
  * 
 /**/
 
+
 /**
- * INIT
+ *  INIT
  *  Phase 1
  * 
 /**/
 
 // VARIABLES
 
-var maxNumber = 100;
+var maxNumber;
 var bombsNumber = 16;
-var possibilities = maxNumber - bombsNumber;
+var possibilities;
 var bombList = [];
 var allowedNumbers = [];
 var user = 0;
 
+// BONUS: CHOOSE A DIFFICULTY LEVEL
+
+var level = parseInt( prompt('Choose the difficulty Level between 0 and 2').trim() );
+
+// VALIDATION
+
+while(isNaN(level) || level < 0 || level > 2) {
+    level = parseInt( prompt('Please enter again your desired difficulty Level, between 0 and 2').trim() );
+}
+
+// CHOOSING DIFFICULTY LEVEL
+
+switch(level) {
+    case 0:
+        maxNumber = 100;
+        break;
+    case 1:
+        maxNumber = 80;
+        break;
+    case 2:
+        maxNumber = 50;        
+}
+
+possibilities = maxNumber - bombsNumber;
 
 // GENERATE 16 RANDOM NUMBERS FROM 1 TO 100 (BOMBS)
 
@@ -35,20 +60,22 @@ while(bombList.length < bombsNumber) {
 }
 console.log('Bomb List:', bombList);
 
+
 /**
  * 
  *  GAME MAIN LOOP
+ *  Phase 2
  * 
 /**/
 
 while( (allowedNumbers.length < possibilities) && (! bombList.includes(user))) {
 
     // USER CHOICE
-    user = parseInt( prompt('Please enter a number between 1 and ' + maxNumber + '\n Succesfull attempts: ' + allowedNumbers.length + ' of ' + possibilities) );
+    user = parseInt( prompt('Please enter a number between 1 and ' + maxNumber + '\n Succesfull attempts: ' + allowedNumbers.length + ' of ' + possibilities).trim() );
 
     // VALIDATION
     while(isNaN(user) || user < 1 || user > maxNumber) {
-        user = parseInt( prompt('Invalid input. Please enter a valid number between 1 and ' + maxNumber));
+        user = parseInt( prompt('Invalid input. Please enter a valid number between 1 and ' + maxNumber).trim() );
     }
     console.log(user);
 
@@ -68,8 +95,11 @@ while( (allowedNumbers.length < possibilities) && (! bombList.includes(user))) {
     }
 }
 
+
 /**
- * END DISPLAY
+ *  END DISPLAY
+ *  Phase 3
+ * 
 /**/
 
 console.log('--- GAME OVER ---');
